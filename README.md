@@ -7,7 +7,7 @@ This is just the started code.
 
 [smangrul/hindi_instruct_v1](https://huggingface.co/datasets/smangrul/hindi_instruct_v1)
 
-# Hindi Instruct V1 Dataset
+## Hindi Instruct V1 Dataset
 
 This dataset is curated by Sourab Mangrulkar. It was developed on top of `HuggingFaceH4/no_robots` dataset. 
 First, the dataset was translated using `ai4bharat/indictrans2-en-indic-1B` SoTA translation model developed by AI4Bharat. 
@@ -39,13 +39,13 @@ dataset = dataset.map(
 
 Next, inspired by the demo given by the Openhathi team [here](https://youtu.be/WKfVzJSDAd8), I did the following:
 
-## Remove Coding samples
+### Remove Coding samples
 
 After manually going through the coding samples and trying things like having user messages in Hindi while the assistant messages with code snippets in English,
 I found that it would still not work because users often give code snippets and prompt the assistant to help with debugging. 
 As this would be noise in Hindi instruction tuning, I simply removed all the coding examples.
 
-## Add English and Hinglish instructions to tell the model to reply in Hindi for Engligh user messages and add the CoT prompt `Frist write in English and then translate to Hindi`
+### Add English and Hinglish instructions to tell the model to reply in Hindi for Engligh user messages and add the CoT prompt `Frist write in English and then translate to Hindi`
 
 With probability of 0.2, add the prompts `Hindi mein jawab dena.`/`Reply in Hindi.`/`Summarize in Hindi` to the end of user messages in English with the assistant replies in Hindi.
 This would help when user writes something in English and prompt the model to reply in Hindi.
@@ -106,7 +106,7 @@ Example outputs:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
 
-## Hinglish (Code-Mixing and Transliteration) for colloquial usage
+### Hinglish (Code-Mixing and Transliteration) for colloquial usage
 
 We use the below prompts with the following datasets `HinGE` and `https://github.com/google-research-datasets/Hinglish-TOP-Dataset` for adding samples that does different combinations of translations between English, Hindi and Hinglish.
 
@@ -172,7 +172,7 @@ Example output:
 ```
 
 
-## Add the Hindi specific System prompt 
+### Add the Hindi specific System prompt 
 With 0.2 probability, we add the system prompt `You are a native Hindi speaker who can converse at expert level in both Hindi and colloquial Hinglish`.
 
 ```python
